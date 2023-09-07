@@ -41,7 +41,8 @@ def messages_by_id(id):
     messages_by_id = Message.query.filter_by(id=id).first()
     message_data = request.get_json()
     if request.method == 'PATCH':
-        setattr(messages_by_id, message_data, message_data['body'])
+        for attr in message_data:
+            setattr(messages_by_id, attr, message_data[attr])
         db.session.add(messages_by_id)
         db.session.commit()
         messages_by_id_dict = messages_by_id.to_dict()
