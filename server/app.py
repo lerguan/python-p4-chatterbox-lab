@@ -49,7 +49,7 @@ def messages_by_id(id):
         response = make_response(jsonify(messages_by_id_dict), 200)
         return response
     
-    elif request.method == "DELETE":
+    elif request.method == 'DELETE':
         db.session.delete(messages_by_id)
         db.session.commit()
 
